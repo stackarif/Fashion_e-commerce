@@ -1,6 +1,6 @@
-@extends('layouts.backend_app')
+@extends('layouts.frontend_app')
 
-
+@section('title','Reset Password')
 
 @section('app_content')
 <h3 class="text-center mt-5">Admin</h3>

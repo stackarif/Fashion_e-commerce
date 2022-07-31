@@ -1,7 +1,6 @@
-@extends('layouts.backend_app')
+@extends('layouts.frontend_app')
 
-@section('title' ,'Admin Forgot Passeord')
-
+@section('title','Forget Password')
 
 @section('app_content')
 <div class="login-page">

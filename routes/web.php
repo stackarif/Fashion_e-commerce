@@ -133,6 +133,12 @@ Route::middleware(['auth:customer', 'cart'])->group(function () {
 
 
 Route::middleware('auth:customer')->group(function () {
+    #dashboard
+    Route::get('/dashboard', function () {
+        $navItem = 'dashboard';
+        return view('Frontend.dashboard', compact('navItem'));
+    })->name('dashboard')->middleware(['auth:customer']);
+
     # Order
     Route::get('orders', [OrderController::class, 'index'])->name('orders');
     Route::get('order-details/{id}', [OrderController::class, 'getOrderDetails'])->name('order_details');
@@ -156,12 +162,6 @@ Route::middleware('auth:customer')->group(function () {
     Route::post('settings', [SettingsController::class, 'updateInformation'])->name('settings');
     Route::get('password', [SettingsController::class, 'password'])->name('password');
     Route::post('password', [SettingsController::class, 'updatePassword'])->name('password');
-
-
-    Route::get('/dashboard', function () {
-        $navItem = 'dashboard';
-        return view('Frontend.dashboard', compact('navItem'));
-    })->name('dashboard');
 
     # Message
     Route::get('message', [MessageController::class, 'index'])->name('message');
