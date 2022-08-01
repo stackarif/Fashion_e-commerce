@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\CartMiddleware;
 use App\Http\Middleware\CustomVerifyMiddleware;
+use App\Http\Middleware\UserVerifyMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cart' => CartMiddleware::class,
         'custom_veryfy'=>CustomVerifyMiddleware::class,
+        'user_verify' =>UserVerifyMiddleware::class,
 
     ];
 }

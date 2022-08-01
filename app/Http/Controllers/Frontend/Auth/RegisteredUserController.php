@@ -53,13 +53,13 @@ class RegisteredUserController extends Controller
 
         event(new CustomerRegisterEvent($customer));
 
-        // if ( Auth::guard('customer')->login($customer)) {
-        //     $request->session()->regenerate();
-        //     return redirect(RouteServiceProvider::CUSTOMER_HOME);
-        // } else {
-        //     return back()->withErrors(['email' => 'Something is wrong!!']);
-        // }
-        Auth::guard('customer')->login($customer);
-        return redirect(RouteServiceProvider::CUSTOMER_HOME);
+        if ( Auth::guard('customer')->login($customer)) {
+            $request->session()->regenerate();
+            return redirect(RouteServiceProvider::CUSTOMER_HOME);
+        } else {
+            return back()->withErrors(['email' => 'Something is wrong!!']);
+        }
+        // Auth::guard('customer')->login($customer);
+        // return redirect(RouteServiceProvider::CUSTOMER_HOME);
     }
 }

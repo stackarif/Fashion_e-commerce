@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CustomeVerifyMiddleware
+class UserVerifyMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,11 +18,13 @@ class CustomeVerifyMiddleware
     {
         // dd($request->user()->email_verified_at);
         if (is_null($request->user()->email_verified_at)) {
-            if ($request->user()->getTable() === 'admins') {
-                return redirect()->route('admin.verification.notice');
-            } else if ($request->user()->getTable() === 'customers') {
+            if ($request->user()->getTable() === 'customers') {
                 return redirect()->route('verification.notice');
             }
+            else if ($request->user()->getTable() === 'admins') {
+                return redirect()->route('admin.verification.notice');
+            } 
+           
         }
         return $next($request);
     }

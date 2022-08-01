@@ -18,7 +18,7 @@ class CustomVerifyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-       // dd($request->user()->email_verified_at);
+        //dd($request->user()->getTable());
         if (is_null($request->user()->email_verified_at)) {
             if ($request->user()->getTable() === 'admins') {
                 return redirect()->route('admin.verification.notice');

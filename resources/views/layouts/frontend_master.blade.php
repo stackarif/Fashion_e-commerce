@@ -6,6 +6,13 @@
 <div class="container">
     <div class="row no-gutters">
         <div class="col-md-2 ">
+            <div class="card rounded text-light bg-dark">
+                <div class="card-body">
+                <h5 class="card-title text-light text-center">{{ auth('customer')->user()->name ?? 'NULL' }}</h5>
+                <p class="card-text text-center">{{ auth('customer')->user()->email ?? 'NULL' }}</p>
+                </div>
+            </div>
+            <hr>
             <ul class="list-group">
                 <li class="list-group-item @if ($navItem === 'dashboard') active @endif"><a href="{{ route('dashboard') }}" class="text-dark">Dashboard</a></li>
                 <li class="list-group-item @if ($navItem === 'orders') active @endif"><a href="{{ route('orders') }}" class="text-dark">Orders</a></li>
@@ -20,7 +27,7 @@
                         <button class="btn btn-success btn-block">Logout</button>
                     </form>
                 </li>
-              </ul>
+            </ul>
         </div>
         <div class="col-md-10">
             <div class="card">

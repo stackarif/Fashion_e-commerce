@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\{
     CompareController,
     ContactController,
     CouponController,
+    DashboardController,
     HomeController,
     OrderController,
     ProductController,
@@ -134,10 +135,8 @@ Route::middleware(['auth:customer', 'cart'])->group(function () {
 
 Route::middleware('auth:customer')->group(function () {
     #dashboard
-    Route::get('/dashboard', function () {
-        $navItem = 'dashboard';
-        return view('Frontend.dashboard', compact('navItem'));
-    })->name('dashboard')->middleware(['auth:customer']);
+    Route::get('dashboard', [DashboardController::class, 'dash'])->name('dashboard')
+    ->middleware(['auth:customer']);
 
     # Order
     Route::get('orders', [OrderController::class, 'index'])->name('orders');

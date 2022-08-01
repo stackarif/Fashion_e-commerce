@@ -49,13 +49,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-         event(new AdminRegisterEvent($admin));
+        event(new AdminRegisterEvent($admin));
 
         if ( Auth::guard('admin')->login($admin)) {
-                    $request->session()->regenerate();
-                    return redirect(RouteServiceProvider::ADMIN_HOME);
-                } else {
-                    return back()->withErrors(['email' => 'Something is wrong!!']);
-                }
+            $request->session()->regenerate();
+            return redirect(RouteServiceProvider::ADMIN_HOME);
+        } 
+        else {
+            return back()->withErrors(['email' => 'Something is wrong!!']);
+        }
     }
 }
