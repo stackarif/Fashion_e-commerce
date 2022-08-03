@@ -157,10 +157,10 @@ Route::middleware('auth:customer')->group(function () {
     Route::delete('compare/{compare}', [CompareController::class, 'destroy'])->name('compare.destroy');
 
     # Settings
-    Route::get('settings', [SettingsController::class, 'index'])->name('settings');
-    Route::post('settings', [SettingsController::class, 'updateInformation'])->name('settings');
-    Route::get('password', [SettingsController::class, 'password'])->name('password');
-    Route::post('password', [SettingsController::class, 'updatePassword'])->name('password');
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+    Route::post('/settings', [SettingsController::class, 'updateInformation'])->name('settings');
+    Route::get('/password', [SettingsController::class, 'password'])->name('password');
+    Route::post('/password', [SettingsController::class, 'updatePassword'])->name('password');
 
     # Message
     Route::get('message', [MessageController::class, 'index'])->name('message');

@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'phone' => 'required|string|min:8|max:11',
             'password' => ['required', 'confirmed'],
             'date_of_birth' => ['required', 'before_or_equal:today'],
         ]);
@@ -47,6 +48,7 @@ class RegisteredUserController extends Controller
         $customer = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'date_of_birth' => $request->date_of_birth
         ]);

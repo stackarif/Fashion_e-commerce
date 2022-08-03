@@ -16,7 +16,7 @@
             <ul class="list-group">
                 <li class="list-group-item @if ($navItem === 'dashboard') active @endif"><a href="{{ route('dashboard') }}" class="text-dark">Dashboard</a></li>
                 <li class="list-group-item @if ($navItem === 'orders') active @endif"><a href="{{ route('orders') }}" class="text-dark">Orders</a></li>
-                <li class="list-group-item "><a href="" class="text-dark">Coments</a></li>
+                {{-- <li class="list-group-item "><a href="" class="text-dark">Coments</a></li> --}}
                 <li class="list-group-item @if ($navItem === 'wishlist') active @endif"><a href="{{ route('wishlist') }}" class="text-dark">Wishlist</a></li>
                 <li class="list-group-item @if ($navItem === 'compare') active @endif"><a href="{{ route('compare') }}" class="text-dark">Compare</a></li>
                 <li class="list-group-item @if ($navItem === 'settings') active @endif""><a href="{{ route('settings') }}" class="text-dark">Settings</a></li>

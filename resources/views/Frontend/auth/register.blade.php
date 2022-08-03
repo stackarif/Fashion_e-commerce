@@ -26,6 +26,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for=""><b>Phone : </b></label>
+                            <input type="tel" id="phone" name="phone" >
+                            @error('phone')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for=""><b>Image : </b></label>
                             <input type="file" class="form-control" name="image" >
                             @error('image')

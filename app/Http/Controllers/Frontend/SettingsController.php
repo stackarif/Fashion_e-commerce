@@ -11,6 +11,7 @@ class SettingsController extends Controller
 {
     public function index()
     {
+        //return 'settings';
         $navItem = 'settings';
         return view('Frontend.settings.index', compact('navItem'));
     }
@@ -25,7 +26,9 @@ class SettingsController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required'],
-            'phone' => ['numeric', 'nullable'],
+            //'phone' => ['numeric', 'nullable'],
+            'phone' => 'required|string|min:8|max:11',
+
         ]);
         auth('customer')->user()->update($request->all());
         session()->flash('success', 'Profile Updated');
