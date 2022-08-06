@@ -13,7 +13,7 @@
         <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
-            <h3 class="login-box-msg">Verify Code</h3>
+            <h6 class="login-box-msg">Verify Phone Number</h6>
 
             <form action="{{ route('verify') }}" method="POST">
                 @if(session('status'))
@@ -21,7 +21,7 @@
                 @endisset
                 @csrf
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="2586" name="code">
+                <input type="text" class="form-control" placeholder="Confirmation code" name="code">
                 <div class="input-group-append">
                   
                 </div>

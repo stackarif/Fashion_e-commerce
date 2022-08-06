@@ -15,7 +15,8 @@ use App\Http\Controllers\Frontend\{
     ShippingController,
     ShopController,
     WishlistController,
-    MessageController
+    MessageController,
+    NexmoController as FrontendNexmoController
 };
 use App\Http\Controllers\Frontend\Auth\{
     NewPasswordController,
@@ -86,13 +87,19 @@ Route::middleware('guest:customer')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth:customer')
         ->name('logout');
+        
+    Route::get('/verify',[FrontendNexmoController::class,'verify'])->name('verify')
+        ->middleware('guest:customer');
+    
+    Route::post('/verify',[NexmoController::class,'post_verify'])
+        ->middleware('guest:customer');
+           
 });
 
 #otp
 Route::get('/otp',[NexmoController::class,'otp'])->name('otp');
 Route::post('/otp',[NexmoController::class,'otp_mail']);
-Route::get('/verify',[NexmoController::class,'verify'])->name('verify');
-Route::post('/verify',[NexmoController::class,'post_verify']);
+
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');

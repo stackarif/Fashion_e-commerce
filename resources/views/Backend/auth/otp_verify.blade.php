@@ -13,7 +13,7 @@
         <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
-            <h3 class="login-box-msg">Verify Code</h3>
+            <h3 class="login-box-msg">Verify Admin Confirmation Code</h3>
 
             <form action="{{ route('verify') }}" method="POST">
                 @if(session('status'))
