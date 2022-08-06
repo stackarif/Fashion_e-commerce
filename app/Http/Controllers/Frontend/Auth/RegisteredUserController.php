@@ -54,6 +54,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new CustomerRegisterEvent($customer));
+        //session()->flash('success', 'Complate Your Registration');
 
         if ( Auth::guard('customer')->login($customer)) {
             $request->session()->regenerate();
@@ -63,5 +64,7 @@ class RegisteredUserController extends Controller
         }
         // Auth::guard('customer')->login($customer);
         // return redirect(RouteServiceProvider::CUSTOMER_HOME);
+
     }
 }
+ 

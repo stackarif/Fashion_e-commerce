@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\CustomerLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Otp;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nexmo;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,6 +32,21 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(CustomerLoginRequest $request)
     {
+        $code= rand(1111,9999);
+        $admin = Otp::create([
+            
+            'code' =>$code,
+        ]);
+
+        $nexmo = app('Nexmo\Client');
+        $nexmo->message()->send([
+            'to'=> '+880'.(int) $request->phone,
+            'from'=> 'Arif Hossain',
+            'text'=> 'verify code: ' .$code,
+
+        ]);
+
+        return redirect('/verify');
         $request->authenticate();
 
         $request->session()->regenerate();

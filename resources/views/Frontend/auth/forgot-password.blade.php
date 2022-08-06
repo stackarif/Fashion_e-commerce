@@ -6,21 +6,21 @@
 <div class="login-page">
     <div class="login-box">
         <div class="login-logo">
-          <a href=""><b>Admin </b>LTE</a>
+          <a href=""><b>User </b>LTE</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="{{ route('admin.password.email') }}" method="post">
+            <form action="{{ route('password.email') }}" method="POST">
 
                 @csrf
                 @if(session('status'))
                 <span class="text-success">{{ session('status') }}</span>
                 @endisset
               <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Email" name="email" value="admin@mail.com">
+                <input type="email" class="form-control" placeholder="Email" name="email" value="arif@mail.com">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -40,7 +40,7 @@
 
 
             <p class="mb-1">
-              <a href="{{ route('admin.login') }}">Login</a>
+              <a href="{{ route('login') }}">Login</a>
             </p>
             {{-- <p class="mb-0">
               <a href="{{ route('register') }}" class="text-center">Register</a>

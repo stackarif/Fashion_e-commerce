@@ -3,10 +3,10 @@
 @section('title','Reset Password')
 
 @section('app_content')
-<h3 class="text-center mt-5">Admin</h3>
+<h3 class="text-center mt-5">Confirm Your Password</h3>
 <div class="row container justify-content-center">
     <div class="col-8">
-        <form action="{{ route('admin.password.update') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
             <input type="hidden" name="token" value="{{ request()->route('token')  }}">
             <div class="form-group">
@@ -26,6 +26,10 @@
             </div>
             <div class="form-group">
                 <button class="btn btn-success">Change</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('login') }}" class=" btn-link">Login</a>
+                <a href="" class=" btn-link">Forgot Password?</a>
             </div>
         </form>
     </div>

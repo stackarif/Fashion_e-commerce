@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\NexmoController;
 use App\Http\Controllers\Frontend\{
     CartController,
     CompareController,
@@ -44,6 +46,7 @@ Route::middleware('guest:customer')->group(function () {
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
         ->middleware('guest:customer');
+        
 
     Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
         ->middleware('guest:customer')
@@ -84,6 +87,12 @@ Route::middleware('guest:customer')->group(function () {
         ->middleware('auth:customer')
         ->name('logout');
 });
+
+#otp
+Route::get('/otp',[NexmoController::class,'otp'])->name('otp');
+Route::post('/otp',[NexmoController::class,'otp_mail']);
+Route::get('/verify',[NexmoController::class,'verify'])->name('verify');
+Route::post('/verify',[NexmoController::class,'post_verify']);
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');

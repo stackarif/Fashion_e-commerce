@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Events\AdminRegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Customer;
 use App\Providers\RouteServiceProvider;
 use Database\Factories\AdminFactory;
 use Illuminate\Auth\Events\Registered;
@@ -40,12 +41,14 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            //'phone' => 'required|string|min:8|max:11',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $admin = Admin::create([
+         $admin = Admin::create([
             'name' => $request->name,
             'email' => $request->email,
+            //'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 

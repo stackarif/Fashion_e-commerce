@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\AdminResetPasswordNotification;
 use App\Notifications\CustomerRegisterNotification;
+use App\Notifications\CustomerResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -54,7 +54,7 @@ class Customer extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new AdminResetPasswordNotification($token));
+        $this->notify(new CustomerResetPasswordNotification($token));
     }
 
 

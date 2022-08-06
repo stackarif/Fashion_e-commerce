@@ -30,7 +30,8 @@ class CustomerLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'exists:customers,email'],
+            //'email' => ['required', 'string', 'email', 'exists:customers,email'],
+            'phone' => 'required|string|min:8|max:11',
             'password' => ['required', 'string'],
         ];
     }

@@ -11,13 +11,21 @@
                     <h3 class="text-center text-info">Login</h3>
                     <form action="{{ route('login') }}" class="mt-2" method="POST">
                         @csrf
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for=""><b>Email : </b></label>
                             <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Enter Your Number" name="phone">
+                          
+                          
+                            @error('phone')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>    
                         <div class="form-group">
                             <label for=""><b>Password : </b></label>
                             <input type="password" class="form-control" name="password" placeholder="password">
@@ -36,7 +44,7 @@
                         </div> --}}
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('register') }}" class=" btn-link">Register</a>
-                            <a href="" class=" btn-link">Forgot Password?</a>
+                            <a href="{{route('password.request')}}" class=" btn-link">Forgot Password?</a>
                         </div>
                     </form>
                 </div>

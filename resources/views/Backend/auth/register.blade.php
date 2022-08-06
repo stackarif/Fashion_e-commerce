@@ -34,6 +34,16 @@
               @error('email')
               <span class="text-danger">{{ $message }}</span>
               @enderror
+              {{-- <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="01...." name="phone">
+                <div class="input-group-append">
+                  
+                </div>
+                @error('phone')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
+              </div> --}}
+
               <div class="input-group mb-3">
                 <input type="password" class="form-control" placeholder=" Enter Your Password" name="password">
                 <div class="input-group-append">
