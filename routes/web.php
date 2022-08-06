@@ -47,6 +47,12 @@ Route::middleware('guest:customer')->group(function () {
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
         ->middleware('guest:customer');
+
+    Route::get('/verify',[FrontendNexmoController::class,'verify'])->name('verify');
+        //->middleware('auth:customer');
+    
+    Route::post('/verify',[NexmoController::class,'post_verify']);
+       // ->middleware('auth:customer');    
         
 
     Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
@@ -87,12 +93,6 @@ Route::middleware('guest:customer')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth:customer')
         ->name('logout');
-        
-    Route::get('/verify',[FrontendNexmoController::class,'verify'])->name('verify')
-        ->middleware('guest:customer');
-    
-    Route::post('/verify',[NexmoController::class,'post_verify'])
-        ->middleware('guest:customer');
            
 });
 
