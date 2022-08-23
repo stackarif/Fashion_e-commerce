@@ -23,6 +23,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+          
           {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -39,19 +40,14 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="./index.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
             </ul>
-          </li> --}}
+          </li>  --}}
+          
           {{-- <li class="nav-item">
             <a href="@route('category.index')" class="nav-link">
               <i class="nav-icon far fa-circle text-warning"></i>
@@ -138,14 +134,23 @@
               <p>Coupon</p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link @if ($navItem === 'website')
             active
             @endif" href="{{ route('admin.website.index') }}">
               <i class="nav-icon fas fa-globe-asia text-warning"></i>
-              <p>Website</p>
+              <p>Top Website</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link @if ($navItem === 'website')
+            active
+            @endif" href="{{ route('admin.website_footer.index') }}">
+              <i class="nav-icon fas fa-globe-asia text-warning"></i>
+              <p>Footer Website</p>
+            </a>
+          </li> --}}
+          
           <li class="nav-item">
             <a class="nav-link @if ($navItem === 'order')
             active
@@ -161,6 +166,35 @@
               <i class="nav-icon fa fa-envelope text-warning"></i>
               <p>Message</p>
             </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link ">
+              
+              <i class="nav-icon fas fa-globe-asia text-warning"></i>
+              <p>
+                Website
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a class="nav-link @if ($navItem === 'website')
+                
+                @endif" href="{{ route('admin.website.index') }}">
+                <i class="far fa-circle nav-icon"></i>
+                  <p>Top Details</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link @if ($navItem === 'website')
+                
+                @endif" href="{{ route('admin.website_footer.index') }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Footer Details</p>
+                </a>
+              </li>
+              
+            </ul>
           </li>
           @auth('admin')
           <li class="nav-item">

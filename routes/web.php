@@ -188,6 +188,17 @@ Route::middleware('auth:customer')->group(function () {
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact');
 
+//blog start
+Route::get('blog_website',function(){
+    return view('layouts.website');
+
+});
+
+Route::get('blog_website2',function(){
+    return view('layouts.tech_index');
+
+});
+
 
 
 Route::get('test', function () {

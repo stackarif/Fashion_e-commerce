@@ -12,7 +12,7 @@ class WebsiteController extends Controller
     public function index()
     {
         $website = Website::first();
-        return view('Backend.website.index', ['navItem' => 'website'], compact('website'));
+        return view('Backend.website_top.index', ['navItem' => 'website'], compact('website'));
     }
 
 
@@ -25,6 +25,7 @@ class WebsiteController extends Controller
      */
     public function update(Request $request, Website $website)
     {
+        //dd($request);
         if ($request->file('logo')) {
             $oldImagePath = $website->logo;
             $website->update([
@@ -34,15 +35,15 @@ class WebsiteController extends Controller
         }
         $website->update([
             // 'title' => $request->title,
-            'address' => $request->address,
-            'email' => $request->email,
+            //'address' => $request->address,
+            //'email' => $request->email,
             'phone' => $request->phone,
-            'fb' => $request->fb,
-            'tw' => $request->tw,
-            'ins' => $request->ins,
-            'link' => $request->link,
-            'footer_1' => $request->footer_1,
-            'footer_2' => $request->footer_2
+            //'fb' => $request->fb,
+           // 'tw' => $request->tw,
+            //'ins' => $request->ins,
+            //'link' => $request->link,
+            //'footer_1' => $request->footer_1,
+            //'footer_2' => $request->footer_2
         ]);
         session()->flash('success', 'Data Update Successfully!!');
         return redirect()->route('admin.website.index');

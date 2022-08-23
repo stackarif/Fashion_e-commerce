@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
+    BlogController,
     SizeController,
     ColorController,
     SliderController,
@@ -14,12 +15,14 @@ use App\Http\Controllers\Admin\{
     SubCategoryController,
     MessageController,
     OrderController,
-    SMSController
+    SMSController,
+    WebsiteControllerFooter
 };
 
 use Vonage\SMS\Client;
 use App\Mail\CustomerBirthdayWishMail;
 use App\Mail\CustomerOrderMail;
+use App\Models\Blog;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,6 +59,7 @@ Route::prefix('admin')->as('admin.')->middleware(['auth:admin'])->group(function
     Route::put('slider-active/{slider}', [SliderController::class, 'activeSlider'])->name('slider-active');
 
     Route::resource('website', WebsiteController::class)->except(['create', 'store', 'destroy', 'show']);
+    Route::resource('website_footer', WebsiteControllerFooter::class)->except(['create', 'store', 'destroy', 'show']);
 
     Route::resource('coupon', CouponController::class)->except(['create', 'edit']);
     Route::get('fetch-coupon', [CouponController::class, 'fetchCoupon'])->name('fetch-coupon');
@@ -102,3 +106,7 @@ Route::get('test', function () {
 });
 
 // Route::get('sms', [SMSController::class, 'index']);
+
+Route::get('admin/test',[BlogController::class,'index']);
+//Route::get('admin/website_footer',[WebsiteControllerFooter::class,'index'])->name('admin.website_footer');
+

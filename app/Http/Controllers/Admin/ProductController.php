@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Size;
+use App\Models\WebsiteFooter;
 
 class ProductController extends Controller
 {
@@ -20,6 +21,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $website = WebsiteFooter::first();
+        dd($website);
         $products = Product::withoutGlobalScope('isActive')->withOnly(['info', 'category'])->latest()->get();
         return view('Backend.Product.index', ['navItem' => 'product'], compact('products'));
     }
