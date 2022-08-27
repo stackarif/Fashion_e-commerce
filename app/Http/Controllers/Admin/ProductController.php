@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $website = WebsiteFooter::first();
-        dd($website);
+       // dd($website);
         $products = Product::withoutGlobalScope('isActive')->withOnly(['info', 'category'])->latest()->get();
         return view('Backend.Product.index', ['navItem' => 'product'], compact('products'));
     }

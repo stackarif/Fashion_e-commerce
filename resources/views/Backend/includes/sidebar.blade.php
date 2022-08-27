@@ -196,6 +196,12 @@
               
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="nav-icon fa fa-envelope text-warning"></i>
+              <p>Blog</p>
+            </a>
+          </li>
           @auth('admin')
           <li class="nav-item">
             <form action="{{ route('admin.logout') }}" method="POST">

@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\NexmoController;
+use App\Http\Controllers\Blog\BlogCategoryController;
+use App\Http\Controllers\Blog\BlogDashboardController;
+use App\Http\Controllers\Blog\BlogpostController;
+use App\Http\Controllers\Blog\TagController;
 use App\Http\Controllers\Frontend\{
     CartController,
     CompareController,
@@ -28,7 +32,7 @@ use App\Http\Controllers\Frontend\Auth\{
     EmailVerificationPromptController,
     EmailVerificationNotificationController
 };
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 #authentication
@@ -194,10 +198,45 @@ Route::get('blog_website',function(){
 
 });
 
-Route::get('blog_website2',function(){
-    return view('layouts.tech_index');
 
+
+//Blog start 
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Front End Routes
+Route::get('/', 'FrontEndController@home')->name('website');
+Route::get('/about', 'FrontEndController@about')->name('website.about');
+Route::get('/category/{slug}', 'FrontEndController@category')->name('website.category');
+Route::get('/tag/{slug}', 'FrontEndController@tag')->name('website.tag');
+Route::get('/contact', 'FrontEndController@contact')->name('website.contact');
+Route::get('/post/{slug}', 'FrontEndController@post')->name('website.post');
+
+Route::post('/contact', 'FrontEndController@send_message')->name('website.contact');
+// Admin Panel Routes
+
+Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
+    Route::get('/dashboard',[BlogDashboardController::class,'index'])->name('dashboard');
+
+    Route::resource('category', BlogCategoryController::class);
+    Route::resource('tag', TagController::class);
+    Route::resource('post', BlogpostController::class);
+    Route::resource('user', 'UserController');
+    Route::get('/profile', 'UserController@profile')->name('user.profile');
+    Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
+    
+    // setting
+    Route::get('setting', 'SettingController@edit')->name('setting.index');
+    Route::post('setting', 'SettingController@update')->name('setting.update');
+
+    // Contact message
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
+    Route::get('/contact/show/{id}', 'ContactController@show')->name('contact.show');
+    Route::delete('/contact/delete/{id}', 'ContactController@destroy')->name('contact.destroy');
 });
+
 
 
 

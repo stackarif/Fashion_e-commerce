@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new AdminRegisterEvent($admin));
+        //event(new AdminRegisterEvent($admin));
 
         if ( Auth::guard('admin')->login($admin)) {
             $request->session()->regenerate();

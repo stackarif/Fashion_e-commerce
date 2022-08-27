@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\{
     SMSController,
     WebsiteControllerFooter
 };
-
+use App\Http\Controllers\BlogCategoryController;
 use Vonage\SMS\Client;
 use App\Mail\CustomerBirthdayWishMail;
 use App\Mail\CustomerOrderMail;
@@ -32,7 +32,7 @@ Route::prefix('admin')->as('admin.')->middleware(['auth:admin'])->group(function
 
     # Dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')
-    ->middleware(['auth:admin','custom_veryfy']);
+    ->middleware(['auth:admin']);
 
     Route::resource('category', CategoryController::class)->except(['create', 'edit']);
     Route::get('fetch-category', [CategoryController::class, 'fetchCategory'])->name('fetch-category');
@@ -84,6 +84,11 @@ Route::prefix('admin')->as('admin.')->middleware(['auth:admin'])->group(function
 
     #Customer
     Route::get('customer/{customer}', [CustomerController::class, 'singleCustomer'])->name('customer');
+
+
+    #blog page
+    Route::resource('blogcategory', BlogCategoryController::class)->except(['create', 'store', 'destroy', 'show']);
+
 });
 
 
