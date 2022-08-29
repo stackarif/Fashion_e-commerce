@@ -37,21 +37,21 @@ class BlogUserController extends Controller
     }
 
     public function edit(BlogUser $user){
-        return view('Blogadmin.user.edit', compact('user'));
+        return view('admin.user.edit', compact('user'));
     }
 
-    public function update(Request $request, BlogUser $bloguser){
+    public function update(Request $request, BlogUser $user){
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'email' => "required|email|unique:blog_users,email, $bloguser->id",
+            'email' => "required|email|unique:blog_users,email, $user->id",
             'password' => 'sometimes|nullable|min:8',
         ]);
 
-        $bloguser->name = $request->name;
-        $bloguser->email = $request->email;
-        $bloguser->password = bcrypt($request->password);
-        $bloguser->description = $request->description;
-        $bloguser->save();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->description = $request->description;
+        $user->save();
 
         session()->flash('success', 'User updated successfully');
         return redirect()->back();
@@ -71,33 +71,33 @@ class BlogUserController extends Controller
         return view('Blogadmin.user.profile', compact('user'));
     }
 
-    // public function profile_update(Request $request){
-    //     $user = auth()->user();
+    public function profile_update(Request $request){
+        $user = auth()->user();
 
-    //     $this->validate($request, [
-    //         'name' => 'required|string|max:255',
-    //         'email' => "required|email|unique:blogusers,email, $user->id",
-    //         'password' => 'sometimes|nullable|min:8',
-    //         'image'=> 'sometimes|nullable|image|max:2048',
-    //     ]);
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => "required|email|unique:blog_users,email, $user->id",
+            'password' => 'sometimes|nullable|min:8',
+            'image'=> 'sometimes|nullable|image|max:2048',
+        ]);
 
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->description = $request->description;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->description = $request->description;
 
-    //     if($request->has('password') && $request->password !== null){
-    //         $user->password = bcrypt($request->password);
-    //     }
+        if($request->has('password') && $request->password !== null){
+            $user->password = bcrypt($request->password);
+        }
 
-    //     if($request->hasFile('image')){
-    //         $image = $request->image;
-    //         $image_new_name = time() . '.' . $image->getClientOriginalExtension();
-    //         $image->move('storage/user/', $image_new_name);
-    //         $user->image = '/storage/user/' . $image_new_name;
-    //     }
-    //     $user->save();
+        if($request->hasFile('image')){
+            $image = $request->image;
+            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('storage/user/', $image_new_name);
+            $user->image = '/storage/user/' . $image_new_name;
+        }
+       // $user->save();
 
-    //     session()->flash('success', 'User profile updated successfully');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'User profile updated successfully');
+        return redirect()->back();
+    }
 }

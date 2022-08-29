@@ -53,9 +53,9 @@
           <div class="col-8 text-right">
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                {{-- @foreach($categories as $category) --}}
-                <li><a href=""></a> category</li>
-                {{-- @endforeach --}}
+                @foreach($categories as $category)
+                <li><a href="{{ route('website.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a></li>
+                @endforeach
                 <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
               </ul>
             </nav>

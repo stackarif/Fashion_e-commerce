@@ -227,8 +227,8 @@ Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
     Route::resource('tag', TagController::class);
     Route::resource('post', BlogpostController::class);
     Route::resource('user', BlogUserController::class);
-    Route::get('/profile', 'UserController@profile')->name('user.profile');
-    Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
+    Route::get('/profile', [BlogUserController::class,'profile'])->name('user.profile');
+    Route::post('/profile',[BlogUserController::class,'profile_update'])->name('user.profile.update');
     
     // setting
     Route::get('setting', [BlogsettingController::class,'edit'])->name('setting.index');

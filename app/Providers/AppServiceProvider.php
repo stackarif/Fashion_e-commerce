@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\BlogCategory;
+use App\Models\Blogsetting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // if(config('app.env') === 'production') {
+        //     \URL::forceScheme('https');
+        // }
+
+        $categories = BlogCategory::take(5)->get();
+        View::share('categories', $categories);
+
+        $setting = Blogsetting::first();
+        View::share('setting', $setting);
     }
 }

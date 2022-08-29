@@ -37,7 +37,7 @@ class BlogFrontendController extends Controller
         if($category){
             $posts = Blogpost::where('category_id', $category->id)->paginate(9);
 
-            return view('website.category', compact(['blogcategory', 'posts']));
+            return view('website.category', compact(['category', 'posts']));
         }else {
             return redirect()->route('website');
         }
