@@ -22,7 +22,7 @@
             <div class="entry2">
               <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img src="{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">{{ $post->category->name ?? "NULL"}}</span>
+              <span class="post-category text-white bg-secondary mb-3">{{ $post->blogcategory->name ?? "NULL"}}</span>
 
               <h2><a href="{{ route('website.post', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h2>
               <div class="post-meta align-items-center text-left clearfix">
