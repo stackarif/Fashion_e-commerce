@@ -17,11 +17,11 @@
         <div class="container">
         <div class="row">
             <div class="col-md-6 order-md-2">
-            <img src="@if($user->image) {{ $user->image }} @else {{ asset('website/images/user.png') }} @endif" alt="Image" class="img-fluid">
+            <img src="@if($user->image ?? "NULL") {{ $user->image ?? "NULL" }} @else {{ asset('website/images/user.png') }} @endif" alt="Image" class="img-fluid">
             </div>
             <div class="col-md-5 mr-auto order-md-1">
-                <h2> {{ $user->name }}</h2>
-                <p>{{ $user->description }}</p>
+                <h2> {{ $user->name ?? "NULL" }}</h2>
+                <p>{{ $user->description ?? "NULL" }}</p>
             </div>
         </div>
         </div>

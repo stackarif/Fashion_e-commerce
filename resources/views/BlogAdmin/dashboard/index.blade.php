@@ -10,7 +10,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
               </ol>
             </div><!-- /.col -->
@@ -27,7 +27,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>post</h3>
+                  <h3>{{ $postCount }}</h3>
 
                   <p>Posts</p>
                 </div>
@@ -41,7 +41,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>category count</h3>
+                  <h3>{{ $categoryCount }}</h3>
 
                   <p>Categories</p>
                 </div>
@@ -55,7 +55,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3></h3>
+                  <h3>{{ $tagCount }}</h3>
 
                   <p>Tags</p>
                 </div>
@@ -69,7 +69,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3></h3>
+                  <h3>{{ $userCount }}</h3>
 
                   <p>Users</p>
                 </div>
@@ -86,7 +86,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">Post List</h3>
-                            <a href="" class="btn btn-primary">Post List</a>
+                            <a href="{{ route('post.index') }}" class="btn btn-primary">Post List</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -105,42 +105,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @if($posts->count()) --}}
-                                {{-- @foreach ($posts as $post) --}}
+                                @if($posts->count())
+                                @foreach ($posts as $post)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $post->id }}</td>
                                         <td>
                                             <div style="max-width: 70px; max-height:70px;overflow:hidden">
-                                                <img src="" class="img-fluid img-rounded" alt="">
+                                                <img src="{{ asset($post->image) }}" class="img-fluid img-rounded" alt="">
                                             </div>
                                         </td>
-                                        <td>Title</td>
-                                        <td>name</td>
+                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $post->blogcategory->name ?? "NULL" }}</td>
                                         <td>
-                                            {{-- @foreach($post->tags as $tag)  --}}
-                                                <span class="badge badge-primary">tag name</span>
-                                            {{-- @endforeach --}}
+                                            @foreach($post->btags as $tag) 
+                                                <span class="badge badge-primary">{{ $tag->name }} </span>
+                                            @endforeach
                                         </td>
-                                        <td>name</td>
-                                        <td>08.22.2022</td>
+                                        <td>{{ $post->bloguser->name ?? "NULL" }}</td>
+                                        <td>{{ $post->created_at->format('d M, Y') }}</td>
                                         <td class="d-flex">
-                                            <a href="" class="btn btn-sm btn-success mr-1"> <i class="fas fa-eye"></i> </a>
-                                            <a href="" class="btn btn-sm btn-primary mr-1"> <i class="fas fa-edit"></i> </a>
-                                            <form action="" class="mr-1" method="POST">
+                                            <a href="{{ route('post.show', [$post->id]) }}" class="btn btn-sm btn-success mr-1"> <i class="fas fa-eye"></i> </a>
+                                            <a href="{{ route('post.edit', [$post->id]) }}" class="btn btn-sm btn-primary mr-1"> <i class="fas fa-edit"></i> </a>
+                                            <form action="{{ route('post.destroy', [$post->id]) }}" class="mr-1" method="POST">
                                                 @method('DELETE')
                                                 @csrf 
                                                 <button type="submit" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </button>
                                             </form>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
-                                {{-- @else    --}}
+                                @endforeach
+                                @else   
                                     <tr>
                                         <td colspan="6">
                                             <h5 class="text-center">No posts found.</h5>
                                         </td>
                                     </tr>
-                                {{-- @endif --}}
+                                @endif
                             </tbody>
                         </table>
                     </div>

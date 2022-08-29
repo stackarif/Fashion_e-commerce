@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
+use App\Models\Blogpost;
 use App\Models\Btag;
 use App\Post;
 use App\Tag;
@@ -14,13 +15,13 @@ use Illuminate\Http\Request;
 class BlogDashboardController extends Controller
 {
     public function index(){
-        // $posts = Post::orderBy('created_at', 'DESC')->take(10)->get();
-        // $postCount = Post::all()->count();
+        $posts = Blogpost::orderBy('created_at', 'DESC')->take(10)->get();
+        $postCount = Blogpost::all()->count();
         $categoryCount = BlogCategory::all()->count();
         $tagCount = Btag::all()->count();
-        // $userCount = User::all()->count();
+        $userCount = Btag::all()->count();
 
 
-        return view('BlogAdmin.dashboard.index');
+        return view('Blogadmin.dashboard.index', compact(['posts', 'postCount', 'categoryCount', 'tagCount', 'userCount']));
     }
 }

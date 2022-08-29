@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\NexmoController;
 use App\Http\Controllers\Blog\BlogCategoryController;
+use App\Http\Controllers\Blog\BlogContactController;
 use App\Http\Controllers\Blog\BlogDashboardController;
 use App\Http\Controllers\Blog\BlogFrontendController;
 use App\Http\Controllers\Blog\BlogpostController;
@@ -35,6 +36,7 @@ use App\Http\Controllers\Frontend\Auth\{
     EmailVerificationPromptController,
     EmailVerificationNotificationController
 };
+use App\Models\Blogcontact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -235,7 +237,7 @@ Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
     Route::post('setting', [BlogsettingController::class,'update'])->name('setting.update');
 
     // Contact message
-    Route::get('/contact', 'ContactController@index')->name('contact.index');
+    Route::get('/contact',[BlogContactController::class, 'index'])->name('contact.index');
     Route::get('/contact/show/{id}', 'ContactController@show')->name('contact.show');
     Route::delete('/contact/delete/{id}', 'ContactController@destroy')->name('contact.destroy');
 });
