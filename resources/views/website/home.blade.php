@@ -9,9 +9,7 @@
                     style="background-image: url('{{ $post->image }}');">
 
                     <div class="text">
-                        <div class="post-categories mb-3">
-                            <span class="post-category bg-danger">{{ $post->blogcategory->name ?? "NULL" }}</span>
-                        </div>
+                      
                         <h2>{{ $post->title }}</h2>
                         <span class="date">{{ $post->created_at->format('M d, Y')}}</span>
                     </div>
@@ -39,9 +37,7 @@
                 <a href="{{ route('website.post', ['slug' => $post->slug]) }}" class="h-entry mb-30 v-height gradient"
                     style="background-image: url('{{ $post->image }}');">
                     <div class="text">
-                        <div class="post-categories mb-3">
-                            <span class="post-category bg-danger">{{ $post->blogcategory->name ?? "NULL" }}</span>
-                        </div>
+                     
                         <h2>{{ $post->title }}</h2>
                         <span class="date">{{ $post->created_at->format('M d, Y')}}</span>
                     </div>

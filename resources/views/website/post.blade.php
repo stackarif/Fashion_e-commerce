@@ -10,9 +10,9 @@
                     <h1 class="mb-4"><a href="javascript:void()">{{ $post->title }}</a></h1>
                     <div class="post-meta align-items-center text-center">
                         <figure class="author-figure mb-0 mr-3 d-inline-block">
-                            <img src="@if($post->user->image ?? "NULL") {{ $post->user->image ?? "NULL" }} @else {{ asset('website/images/user.png') }} @endif" alt="Image" class="img-fluid">
+                            <img src="@if($post->bloguser->image ?? "NULL") {{ $post->bloguser->image ?? "NULL" }} @else {{ asset('website/images/user.png') }} @endif" alt="Image" class="img-fluid">
                         </figure>
-                        <span class="d-inline-block mt-1">By {{ $post->user->name ?? "NULL" }}</span>
+                        <span class="d-inline-block mt-1">By {{ $post->bloguser->name ?? "NULL" }}</span>
                         <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d, Y') }}</span>
                     </div>
                 </div>

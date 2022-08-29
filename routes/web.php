@@ -6,6 +6,7 @@ use App\Http\Controllers\Blog\BlogDashboardController;
 use App\Http\Controllers\Blog\BlogFrontendController;
 use App\Http\Controllers\Blog\BlogpostController;
 use App\Http\Controllers\Blog\BlogsettingController;
+use App\Http\Controllers\Blog\BlogUserController;
 use App\Http\Controllers\Blog\TagController;
 use App\Http\Controllers\Frontend\{
     CartController,
@@ -191,7 +192,7 @@ Route::middleware('auth:customer')->group(function () {
 });
 
 # Contact
-Route::get('contact', [ContactController::class, 'index'])->name('contact');
+Route::get('econtact', [ContactController::class, 'index'])->name('econtact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact');
 
 //blog start
@@ -225,7 +226,7 @@ Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
     Route::resource('category', BlogCategoryController::class);
     Route::resource('tag', TagController::class);
     Route::resource('post', BlogpostController::class);
-    Route::resource('user', 'UserController');
+    Route::resource('user', BlogUserController::class);
     Route::get('/profile', 'UserController@profile')->name('user.profile');
     Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
     
