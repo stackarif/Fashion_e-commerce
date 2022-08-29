@@ -13,14 +13,14 @@ class Blogpost extends Model
     protected $dates = [
         'published_at',
     ];
-    public function Blogcategory(){
-        return $this->belongsTo(BlogCategory::class);
+    public function blogcategory(){
+        return $this->belongsTo(BlogCategory::class,'category_id');
     }
 
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\User');
-    // }
+    public function user()
+    {
+        return $this->belongsTo(BlogUser::class,'category_id');
+    }
 
     public function btags()
     {

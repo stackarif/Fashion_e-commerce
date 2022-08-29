@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\NexmoController;
 use App\Http\Controllers\Blog\BlogCategoryController;
 use App\Http\Controllers\Blog\BlogDashboardController;
+use App\Http\Controllers\Blog\BlogFrontendController;
 use App\Http\Controllers\Blog\BlogpostController;
+use App\Http\Controllers\Blog\BlogsettingController;
 use App\Http\Controllers\Blog\TagController;
 use App\Http\Controllers\Frontend\{
     CartController,
@@ -207,14 +209,14 @@ Route::get('blog_website',function(){
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Front End Routes
-Route::get('/', 'FrontEndController@home')->name('website');
-Route::get('/about', 'FrontEndController@about')->name('website.about');
-Route::get('/category/{slug}', 'FrontEndController@category')->name('website.category');
-Route::get('/tag/{slug}', 'FrontEndController@tag')->name('website.tag');
-Route::get('/contact', 'FrontEndController@contact')->name('website.contact');
-Route::get('/post/{slug}', 'FrontEndController@post')->name('website.post');
+Route::get('/home_blog', [BlogFrontendController::class,'home'])->name('website');
+Route::get('/about', [BlogFrontendController::class,'about'])->name('website.about');
+Route::get('/category/{slug}', [BlogFrontendController::class,'category'])->name('website.category');
+Route::get('/tag/{slug}', [BlogFrontendController::class,'tag'])->name('website.tag');
+Route::get('/contact', [BlogFrontendController::class,'contact'])->name('website.contact');
+Route::get('/post/{slug}',[BlogFrontendController::class,'post'])->name('website.post');
 
-Route::post('/contact', 'FrontEndController@send_message')->name('website.contact');
+Route::post('/contact', [BlogFrontendController::class,'home'])->name('website.contact');
 // Admin Panel Routes
 
 Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
@@ -228,8 +230,8 @@ Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
     Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
     
     // setting
-    Route::get('setting', 'SettingController@edit')->name('setting.index');
-    Route::post('setting', 'SettingController@update')->name('setting.update');
+    Route::get('setting', [BlogsettingController::class,'edit'])->name('setting.index');
+    Route::post('setting', [BlogsettingController::class,'update'])->name('setting.update');
 
     // Contact message
     Route::get('/contact', 'ContactController@index')->name('contact.index');

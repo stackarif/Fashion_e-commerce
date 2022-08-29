@@ -21,7 +21,7 @@ class BlogpostController extends Controller
     public function index()
     {
         $posts = Blogpost::orderBy('created_at', 'DESC')->paginate(20);
-        // dd($posts);
+        //dd($posts);
         return view('BlogAdmin.post.index', compact('posts'));
     }
 

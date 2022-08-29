@@ -76,7 +76,7 @@
                                                 @foreach($tags as $tag) 
                                                 <div class="custom-control custom-checkbox" style="margin-right: 20px">
                                                     <input class="custom-control-input" name="tags[]" type="checkbox" id="tag{{ $tag->id}}" value="{{ $tag->id }}"
-                                                    @foreach($post->tags as $t)
+                                                    @foreach($post->btags as $t)
                                                         @if($tag->id == $t->id) checked @endif
                                                     @endforeach
                                                     >

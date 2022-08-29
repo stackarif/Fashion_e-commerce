@@ -31,7 +31,7 @@
             @yield('content')
 
             <!-- /.login-card-body -->
-        </div>
+        
     </div>
     <!-- /.login-box -->
 

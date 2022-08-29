@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model
+class BlogUser extends Model
 {
     use HasFactory;
-    protected $guarded = ['created_at', 'deleted_at', 'updated_at'];
-
     public function blogposts(){
-        return $this->hasMany(Blogpost::class ,'category_id');
+        return $this->hasOne(Blogpost::class ,'category_id');
     }
 
 }
