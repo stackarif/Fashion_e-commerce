@@ -11,7 +11,7 @@ class BlogUserController extends Controller
     public function index(){
         $users = BlogUser::latest()->paginate(20);
 
-        return view('Blogadmin.user.index', compact('users'));
+        return view('Blogadmin.user.index', compact('users'),['navItem' => 'bloguser']);
     }
 
     public function create(){
@@ -37,7 +37,7 @@ class BlogUserController extends Controller
     }
 
     public function edit(BlogUser $user){
-        return view('admin.user.edit', compact('user'));
+        return view('admin.user.edit', compact('user'),['navItem' => 'bloguser']);
     }
 
     public function update(Request $request, BlogUser $user){
@@ -68,7 +68,7 @@ class BlogUserController extends Controller
     public function profile(){
         $user = auth()->user();
 
-        return view('Blogadmin.user.profile', compact('user'));
+        return view('Blogadmin.user.profile', compact('user'),['navItem' => 'bloguser']);
     }
 
     public function profile_update(Request $request){

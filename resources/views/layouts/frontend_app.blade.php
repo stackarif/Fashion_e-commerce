@@ -44,7 +44,7 @@
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
                     <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="{{ route('econtact') }}">Contact</a>
+                    <a class="text-body mr-3" href="{{ route('contact') }}">Contact</a>
                     <a class="text-body mr-3" href="">Help</a>
                     <a class="text-body mr-3" href="">FAQs</a>
                 </div>
@@ -173,7 +173,7 @@
                             <a href="{{ route('wishlist') }}" class="nav-item nav-link">Wishlist</a>
                             <a href="{{ route('dashboard') }}" class="nav-item nav-link">Dashboard</a>
                             @endauth
-                            <a href="{{ route('econtact') }}" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
 
@@ -219,7 +219,7 @@
 
                             <a class="text-secondary mb-2" href="{{ route('cart') }}"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                             <a class="text-secondary mb-2" href="{{ route('compare') }}"><i class="fa fa-angle-right mr-2"></i>Compare</a>
-                            <a class="text-secondary" href="{{ route('econtact') }}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-secondary" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
@@ -230,7 +230,7 @@
 
                             <a class="text-secondary mb-2" href="{{ route('cart') }}"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                             <a class="text-secondary mb-2" href="{{ route('compare') }}"><i class="fa fa-angle-right mr-2"></i>Compare</a>
-                            <a class="text-secondary" href="{{ route('econtact') }}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-secondary" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
 

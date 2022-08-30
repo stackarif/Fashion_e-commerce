@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.backend_master')
 
-@section('content')
+@section('master_content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">

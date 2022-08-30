@@ -22,6 +22,6 @@ class BlogDashboardController extends Controller
         $userCount = Btag::all()->count();
 
 
-        return view('Blogadmin.dashboard.index', compact(['posts', 'postCount', 'categoryCount', 'tagCount', 'userCount']));
+        return view('Blogadmin.dashboard.index',['navItem' => 'blogcdashboard'],  compact(['posts', 'postCount', 'categoryCount', 'tagCount', 'userCount']));
     }
 }

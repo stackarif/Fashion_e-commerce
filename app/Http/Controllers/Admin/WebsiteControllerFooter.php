@@ -14,7 +14,7 @@ class WebsiteControllerFooter extends Controller
     {
         $website = WebsiteFooter::first();
        //dd($website);
-        return view('Backend.website_footer.index', ['navItem' => 'website'], compact('website'));
+        return view('Backend.website_footer.index', ['navItem' => 'website_footer'], compact('website'));
     }
 
 

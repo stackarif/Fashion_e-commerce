@@ -18,7 +18,7 @@ class TagController extends Controller
     public function index()
     {
         $tags =Btag::orderBy('created_at', 'DESC')->paginate(20);
-        return view('Blogadmin.tag.index', compact('tags'));
+        return view('Blogadmin.tag.index', compact('tags'),['navItem' => 'blogtag']);
     }
 
     /**
@@ -28,7 +28,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('Blogadmin.tag.create');
+        return view('Blogadmin.tag.create',['navItem' => 'blogtag']);
     }
 
     /**
@@ -56,7 +56,7 @@ class TagController extends Controller
         $tag->save();
         
         session()->flash('success', 'Data Update Successfully!!');
-        return redirect(route('tag.index'));
+        return redirect(route('tag.index'),['navItem' => 'blogtag']);
     }
 
     /**
@@ -77,7 +77,7 @@ class TagController extends Controller
      */
     public function edit(Btag $tag)
     {
-        return view('Blogadmin.tag.edit', compact('tag'));
+        return view('Blogadmin.tag.edit', compact('tag'),['navItem' => 'blogtag']);
     }
 
     /**

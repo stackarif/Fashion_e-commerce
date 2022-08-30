@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blogcontact;
+use App\Models\BlogSubCat;
 use Illuminate\Http\Request;
 
-class BlogContactController extends Controller
+class BlogSubCategoryController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $messages = Blogcontact::latest()->paginate(20);
-        return view('Blogadmin.contact.index', compact('messages'),['navItem' => 'blogmessage']);
+        $subcat = BlogSubCat::get()->all();
+        return $subcat;
     }
 
     /**
@@ -48,15 +48,7 @@ class BlogContactController extends Controller
      */
     public function show($id)
     {
-        $message = Blogcontact::find($id);
-
-        if($message){
-            return view('Blogadmin.contact.show', compact('message'),['navItem' => 'blogmessage']);
-        }else {
-
-            session()->flash('error', 'Contact message not found.');
-            return redirect()->route('dashboard');
-        }
+        //
     }
 
     /**
@@ -90,14 +82,6 @@ class BlogContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Blogcontact::find($id);
-
-        if($contact){
-            $contact->delete();
-
-            session()->flash('success', 'Message deleted successfully');
-        }
-
-        return redirect()->back();
+        //
     }
 }

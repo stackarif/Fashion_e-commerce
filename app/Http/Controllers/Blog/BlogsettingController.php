@@ -18,7 +18,7 @@ class BlogsettingController extends Controller
     {
         $setting = Blogsetting::first();
         
-        return view('Blogadmin.setting.edit', compact('setting'));
+        return view('Blogadmin.setting.edit', compact('setting'),['navItem' => 'blogsetting']);
     }
 
     /**

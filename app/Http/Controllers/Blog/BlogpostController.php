@@ -22,7 +22,7 @@ class BlogpostController extends Controller
     {
         $posts = Blogpost::orderBy('created_at', 'DESC')->paginate(20);
         //dd($posts);
-        return view('BlogAdmin.post.index', compact('posts'));
+        return view('BlogAdmin.post.index', compact('posts'),['navItem' => 'blogpost']);
     }
 
     /**
@@ -34,7 +34,7 @@ class BlogpostController extends Controller
     {
         $tags = Btag::all();
         $categories = BlogCategory::all();
-        return view('Blogadmin.post.create', compact(['categories', 'tags']));
+        return view('Blogadmin.post.create', compact(['categories', 'tags']),['navItem' => 'blogpost']);
     }
 
     /**
@@ -85,8 +85,7 @@ class BlogpostController extends Controller
      */
     public function show(Blogpost $post)
     {
-        $post = Blogpost::all();
-        return view('BlogAdmin.post.show', compact('post'));
+        return view('Blogadmin.post.show', compact('post'),['navItem' => 'blogpost']);
     }
 
     /**
@@ -100,7 +99,7 @@ class BlogpostController extends Controller
         ///$post = Blogpost::all();
         $tags = Btag::all();
         $categories = BlogCategory::all();
-        return view('BlogAdmin.post.edit', compact(['post', 'categories','tags']));
+        return view('BlogAdmin.post.edit', compact(['post', 'categories','tags']),['navItem' => 'blogpost']);
     }
 
     /**
@@ -123,7 +122,7 @@ class BlogpostController extends Controller
         $post->description = $request->description;
         $post->category_id = $request->category;
 
-        $post->btags()->attach($request->tags);
+        $post->btags()->sync($request->tags);
 
         if($request->hasFile('image')){
             $image = $request->image;

@@ -21,7 +21,7 @@ class BlogCategoryController extends Controller
     public function index()
     {
         $categories = BlogCategory::orderBy('created_at', 'DESC')->paginate(20);
-        return view('BlogAdmin.category.index', compact('categories'));
+        return view('BlogAdmin.category.index',['navItem' => 'blogcategory'], compact('categories'));
     }
 
     /**
@@ -31,7 +31,7 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
-        return view('BlogAdmin.category.create');
+        return view('BlogAdmin.category.create',['navItem' => 'blogcategory']);
     }
 
     /**
@@ -77,7 +77,7 @@ class BlogCategoryController extends Controller
      */
     public function edit(BlogCategory $category)
     {
-        return view('BlogAdmin.category.edit', compact('category'));
+        return view('BlogAdmin.category.edit', compact('category'),['navItem' => 'blogcategory']);
     }
 
     /**

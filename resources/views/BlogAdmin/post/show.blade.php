@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.backend_master')
 
-@section('content')
+@section('master_content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -38,42 +38,34 @@
                                 <tr>
                                     <th style="width: 200px">Image</th>
                                     <td>
-                                        {{-- <div style="max-width: 300px; max-height:300px;overflow:hidden">
-                                            <img src="{{ asset($post->image) }}" class="img-fluid" alt="">
-                                        </div> --}}
+                                        <div style="max-width: 300px; max-height:300px;overflow:hidden">
+                                            <img src="{{ asset($post->image) ?? "NULL" }}" class="img-fluid" alt="">
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th style="width: 200px">Title</th>
-                                    <td>
-                                        {{-- {{ $post->title }} --}}
-                                    </td>
+                                    <td>{{ $post->title ?? "NULL" }}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 200px">Category Name</th>
-                                    <td>
-                                        {{-- {{ $post->category->name }} --}}
-                                    </td>
+                                    <td>{{ $post->blogcategory->name ?? "NULL" }}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 200px">Post Tags</th>
                                     <td>
-                                        {{-- @foreach($post->tags as $tag) 
-                                            <span class="badge badge-primary">{{ $tag->name }} </span>
-                                        @endforeach --}}
+                                        @foreach($post->btags as $tag) 
+                                            <span class="badge badge-primary">{{ $tag->name ?? "NULL" }} </span>
+                                        @endforeach
                                     </td>
                                 </tr>
                                 <tr>
                                     <th style="width: 200px">Author Name</th>
-                                    <td>
-                                        {{-- {{ $post->user->name }}  --}}
-                                    </td>
+                                    <td>{{ $post->user->name ?? "NULL" }}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 200px">Description</th>
-                                    <td>
-                                        {{-- {!! $post->description !!} --}}
-                                    </td>
+                                    <td>{!! $post->description !!}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\NexmoController;
-use App\Http\Controllers\Blog\BlogCategoryController;
-use App\Http\Controllers\Blog\BlogContactController;
-use App\Http\Controllers\Blog\BlogDashboardController;
-use App\Http\Controllers\Blog\BlogFrontendController;
-use App\Http\Controllers\Blog\BlogpostController;
-use App\Http\Controllers\Blog\BlogsettingController;
-use App\Http\Controllers\Blog\BlogUserController;
-use App\Http\Controllers\Blog\TagController;
+use App\Http\Controllers\Blog\{
+    BlogCategoryController,
+    BlogContactController,
+    BlogDashboardController,
+    BlogFrontendController,
+    BlogpostController,
+    BlogsettingController,
+    BlogSubCategoryController,
+    BlogUserController,
+    TagController,
+};
 use App\Http\Controllers\Frontend\{
     CartController,
     CompareController,
@@ -109,7 +112,7 @@ Route::middleware('guest:customer')->group(function () {
 Route::get('/otp',[NexmoController::class,'otp'])->name('otp');
 Route::post('/otp',[NexmoController::class,'otp_mail']);
 
-
+#Home
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
@@ -194,7 +197,7 @@ Route::middleware('auth:customer')->group(function () {
 });
 
 # Contact
-Route::get('econtact', [ContactController::class, 'index'])->name('econtact');
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact', [ContactController::class, 'store'])->name('contact');
 
 //blog start
@@ -216,7 +219,7 @@ Route::get('/home_blog', [BlogFrontendController::class,'home'])->name('website'
 Route::get('/about', [BlogFrontendController::class,'about'])->name('website.about');
 Route::get('/category/{slug}', [BlogFrontendController::class,'category'])->name('website.category');
 Route::get('/tag/{slug}', [BlogFrontendController::class,'tag'])->name('website.tag');
-Route::get('/contact', [BlogFrontendController::class,'contact'])->name('website.contact');
+Route::get('/blog_contact', [BlogFrontendController::class,'contact'])->name('website.contact');
 Route::get('/post/{slug}',[BlogFrontendController::class,'post'])->name('website.post');
 
 Route::post('/contact', [BlogFrontendController::class,'home'])->name('website.contact');
@@ -226,6 +229,7 @@ Route::group(['prefix' => 'blogadmin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard',[BlogDashboardController::class,'index'])->name('dashboard');
 
     Route::resource('category', BlogCategoryController::class);
+    Route::resource('sub_category', BlogSubCategoryController::class);
     Route::resource('tag', TagController::class);
     Route::resource('post', BlogpostController::class);
     Route::resource('user', BlogUserController::class);

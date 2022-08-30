@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.backend_master')
 
-@section('content')
+@section('master_content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -68,7 +68,7 @@
                                         <td class="d-flex">
                                             <a href="{{ route('post.show', [$post->id]) }}" class="btn btn-sm btn-success mr-1"> <i class="fas fa-eye"></i> </a>
                                             <a href="{{ route('post.edit', [$post->id]) }}" class="btn btn-sm btn-primary mr-1"> <i class="fas fa-edit"></i> </a>
-                                            <a href="{{ route('website.post', [$post->slug]) }}" target="_blank" class="btn btn-sm btn-dark mr-1"> <i class="fas fa-link"></i> </a>
+                                            {{-- <a href="{{ route('website.post', [$post->slug]) }}" target="_blank" class="btn btn-sm btn-dark mr-1"> <i class="fas fa-link"></i> </a> --}}
                                             <form action="{{ route('post.destroy', [$post->id]) }}" class="mr-1" method="POST">
                                                 @method('DELETE')
                                                 @csrf 
